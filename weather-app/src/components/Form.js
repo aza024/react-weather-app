@@ -5,7 +5,9 @@ class Form extends React.Component{
         return(
             // react attr onSubmit(this.props.getweather)
             <form onSubmit={this.props.getWeather}>
-                <input type="number" name="zipcode"placeholder="zipcode"/>
+
+        
+                <input type="text" name="city"placeholder="country"/>
 
                 <button>Get Weather </button>
             </form>

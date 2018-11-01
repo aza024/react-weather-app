@@ -14,19 +14,35 @@ import Weather from "./components/Weather"
 class App extends React.Component{
   // you don't have to use constructor in R16
   state = {
-    
+    temp: undefined,
+    city: undefined,
+    country: undefined,
+    humidity: undefined, 
+    description: undefined, 
+    error: undefined
   }
   getWeather = async (e) => {
     e.preventDefault();
-    const zipcode = e.target.elements.zipcode.value;
+    const city = e.target.elements.city.value;
+    const country = e.target.elements.country.value
     
 
-    const api_call = await fetch
-    (`https://api.openweathermap.org/data/2.5/weather?zip=${zipcode}`+'&appid=')
+    const api_call = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${country}&mode=json&appid=&units=metric`
+    )
 
     const data = await api_call.json();
     
     console.log('Data' + data);
+    // don't ever directly manipulate state - use set state
+    this.setState({
+      temperature: data.main.temp,
+      city: data.name,
+      country: data.sys.country,
+      humidity: data.main.humidity,
+      description: data.weather[0].description,
+      error: ""
+    })
 
   }
   render(){
@@ -37,7 +53,14 @@ class App extends React.Component{
         <Titles />
         {/* form component has access to props in form js file */}
         <Form getWeather={this.getWeather}/>
-        <Weather />
+        <Weather 
+            temperature={this.state.temperature}
+            city = {this.state.city}
+            country = {this.state.country}
+            humidity = {this.state.humidty}
+            description = {this.state.description}
+            error = {this.state.error}
+        />
       </div>
     );
   }
