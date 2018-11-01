@@ -31,17 +31,27 @@ class App extends React.Component{
     )
     const data = await api_call.json();
     
-    console.log('Data' + data);
-    // don't ever directly manipulate state - use set state
-    this.setState({
-      temperature: data.main.temp,
-      city: data.name,
-      country: data.sys.country,
-      humidity: data.main.humidity,
-      description: data.weather[0].description,
-      error: ""
-    })
-
+    if(city  && country ){
+      console.log('Data' + data);
+      // don't ever directly manipulate state - use set state
+      this.setState({
+        temperature: data.main.temp,
+        city: data.name,
+        country: data.sys.country,
+        humidity: data.main.humidity,
+        description: data.weather[0].description,
+        error: ""
+      })
+    } else {
+      this.setState ({
+        temp: undefined,
+        city: undefined,
+        country: undefined,
+        humidity: undefined, 
+        description: undefined, 
+        error: "Please enter your city & country"
+      })
+    }
   }
   render(){
     return(
