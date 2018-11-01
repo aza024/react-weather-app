@@ -3,19 +3,31 @@ import Titles from "./components/Titles"
 import Form from "./components/Form"
 import Weather from "./components/Weather"
 
+
 // initialize component
 
-const API_Key = process.env.API_KEY
+// const API_Key = '8c6fb598d4fa1b909e622dcc6c1fd8ec'
+
 
 
 //App is the major component - we will add smaller components and render them
 class App extends React.Component{
-  getWeather = async () => {
-    const api_call = await fetch(`https://samples.openweathermap.org/data/2.5/forecast?zip=94158&appid=${API_Key}`);
+  // you don't have to use constructor in R16
+  state = {
+    
+  }
+  getWeather = async (e) => {
+    e.preventDefault();
+    const zipcode = e.target.elements.zipcode.value;
+    
+
+    const api_call = await fetch
+    (`https://api.openweathermap.org/data/2.5/weather?zip=${zipcode}`+'&appid=')
 
     const data = await api_call.json();
+    
+    console.log('Data' + data);
 
-    console.log(data);
   }
   render(){
     return(
