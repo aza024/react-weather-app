@@ -6,7 +6,7 @@ import Weather from "./components/Weather"
 
 // initialize component
 
-// const API_Key = '8c6fb598d4fa1b909e622dcc6c1fd8ec'
+
 
 
 
@@ -25,12 +25,10 @@ class App extends React.Component{
     e.preventDefault();
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value
-    
 
     const api_call = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${country}&mode=json&appid=&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&mode=json&appid=${API_KEY}&units=metric`
     )
-
     const data = await api_call.json();
     
     console.log('Data' + data);
