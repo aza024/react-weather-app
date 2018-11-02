@@ -6,7 +6,7 @@ import Weather from "./components/Weather"
 
 // initialize component
 
-const API_KEY = "8c6fb598d4fa1b909e622dcc6c1fd8ec";
+
 
 
 
