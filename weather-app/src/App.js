@@ -6,7 +6,7 @@ import Weather from "./components/Weather"
 
 // initialize component
 
-
+const API_KEY = "8c6fb598d4fa1b909e622dcc6c1fd8ec";
 
 
 
@@ -58,20 +58,34 @@ class App extends React.Component{
       // returns jsx - We need Babel to run jsx for the browser to understand 
       //You can ONLY return one parent element - you only get one div per JSX
       <div>
-        <Titles />
-        {/* form component has access to props in form js file */}
-        <Form getWeather={this.getWeather}/>
-        <Weather 
-            temperature={this.state.temperature}
-            city = {this.state.city}
-            country = {this.state.country}
-            humidity = {this.state.humidty}
-            description = {this.state.description}
-            error = {this.state.error}
-        />
+        <div className="wrapper">
+          <div className="main">
+            <div className="container">
+              <div className="row">
+              <div className="col-xs-5 title-container">
+                <Titles />
+              </div>
+              <div className="col-xs-7 form-container">
+              {/* form component has access to props in form js file */}
+          <Form getWeather={this.getWeather}/>
+              <Weather 
+                  temperature={this.state.temperature}
+                  city = {this.state.city}
+                  country = {this.state.country}
+                  humidity = {this.state.humidty}
+                  description = {this.state.description}
+                  error = {this.state.error}
+              />
+        
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 };
 
+        
 export default App;
